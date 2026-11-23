@@ -4,6 +4,7 @@
 const PORTFOLIO_HTML = "__PORTFOLIO_HTML__";
 const DEMO_HTML = "__DEMO_HTML__";
 const AVATAR_B64 = "__AVATAR_B64__";
+const MERCHYON_B64 = "__MERCHYON_B64__";
 const KV_KEY = "demo_inquiries_v1";
 const MAX_STORED_LEADS = 40;
 const VALID_STATUSES = new Set(["New", "Contacted", "Booked"]);
@@ -191,6 +192,23 @@ export default {
         bytes = await env.LEADS_KV.get("asset_avatar_jpg", { type: "arrayBuffer" });
       } else if (AVATAR_B64 && AVATAR_B64 !== "__AVATAR_B64__") {
         bytes = Uint8Array.from(atob(AVATAR_B64), (c) => c.charCodeAt(0));
+      }
+      if (!bytes) return new Response("Not Found", { status: 404 });
+      return new Response(bytes, {
+        status: 200,
+        headers: {
+          ...securityHeaders("image/jpeg"),
+          "Cache-Control": "public, max-age=86400",
+        },
+      });
+    }
+
+    if (request.method === "GET" && path === "/merchyon.jpg") {
+      let bytes;
+      if (MERCHYON_B64 === "__KV__" && env && env.LEADS_KV) {
+        bytes = await env.LEADS_KV.get("asset_merchyon_jpg", { type: "arrayBuffer" });
+      } else if (MERCHYON_B64 && MERCHYON_B64 !== "__MERCHYON_B64__") {
+        bytes = Uint8Array.from(atob(MERCHYON_B64), (c) => c.charCodeAt(0));
       }
       if (!bytes) return new Response("Not Found", { status: 404 });
       return new Response(bytes, {

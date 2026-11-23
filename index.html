@@ -3,622 +3,996 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mohamed Sehli — Software & Automation Engineer</title>
-  <meta name="description" content="Mohamed Sehli — CS student in Meknes, Morocco building Merchyon, Rust systems (SirajOS, P-Office), and fast websites + workflow automations for small teams." />
-  <meta property="og:title" content="Mohamed Sehli — Software & Automation Engineer" />
-  <meta property="og:description" content="Builder of Merchyon, SirajOS, P-Office, Rustlingo, and custom workflow automations for small businesses and agencies." />
+  <title>Mohamed Sehli — Full-Stack, Automation &amp; Systems Engineer</title>
+  <meta name="description" content="Mohamed Sehli builds production SaaS (Merchyon), Rust systems (SirajOS, P-Office), and fast websites + workflow automations for small businesses and agencies." />
+  <meta property="og:title" content="Mohamed Sehli — Full-Stack, Automation &amp; Systems Engineer" />
+  <meta property="og:description" content="Merchyon SaaS, SirajOS Rust kernel, P-Office, Rustlingo, and interactive $500 SMB Website + Automation systems." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #FFFFFF;
-      --paper-subtle: #F8F8F7;
-      --ink: #111111;
-      --muted: #5C5C5C;
-      --faint: #8C8C8C;
-      --rule: #E7E7E5;
-      --accent: #4F46E5;
+      --canvas: #F5F5F2;
+      --surface: #FFFFFF;
+      --surface-alt: #FAFAF8;
+      --ink: #0E1014;
+      --ink-2: #3F444E;
+      --muted: #69707D;
+      --faint: #949BA6;
+      --line: #E2E2DC;
+      --line-strong: #CECEC7;
+      --accent: #4338CA;
+      --accent-hover: #3730A3;
+      --accent-tint: #EEF2FF;
+      --green: #0F766E;
+      --green-tint: #F0FDFA;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --display: 'Space Grotesk', -apple-system, sans-serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--paper);
+      font-family: var(--sans);
+      background: var(--canvas);
       color: var(--ink);
-      font-size: 15.5px;
-      line-height: 1.65;
+      font-size: 15px;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
 
-    .wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 0 24px;
+    /* Top scroll progress hairline */
+    .scroll-bar {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: var(--accent); z-index: 60; transition: width 0.08s linear;
     }
 
-    /* Top bar — restrained, editorial, zero marketing buttons */
+    /* Architectural outer frame */
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      min-height: 100vh;
+    }
+
+    /* Sticky Navbar */
     header {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .site-name {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
     .nav {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 14px;
-      color: var(--muted);
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; padding: 0 28px; gap: 16px;
     }
-    .nav a:hover { color: var(--ink); }
-    .lang-switch {
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--ink);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      cursor: pointer;
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--display); font-weight: 700; font-size: 16px; letter-spacing: -0.02em;
     }
-    .lang-switch:hover { border-color: var(--ink); }
+    .brand-mark {
+      width: 24px; height: 24px; border-radius: 6px;
+      background: var(--ink); color: #FFF;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 24px;
+      font-size: 13.5px; font-weight: 500; color: var(--ink-2);
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .clock-chip {
+      font-family: var(--mono); font-size: 11.5px; color: var(--muted);
+      padding: 5px 9px; border: 1px solid var(--line); border-radius: 6px;
+      background: var(--surface-alt);
+    }
+    .lang-btn {
+      font-family: var(--mono); font-size: 11.5px; font-weight: 600;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--ink); padding: 5px 10px; border-radius: 6px; cursor: pointer;
+    }
+    .lang-btn:hover { border-color: var(--ink); }
 
-    /* Intro / Portrait */
-    .intro {
-      padding: 60px 0 48px;
+    /* Crisp Buttons */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      font-size: 13.5px; font-weight: 600; padding: 10px 16px;
+      border-radius: 7px; border: 1px solid transparent; cursor: pointer;
+      transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    }
+    .btn-dark { background: var(--ink); color: #FFF; }
+    .btn-dark:hover { background: #232730; }
+    .btn-accent { background: var(--accent); color: #FFF; }
+    .btn-accent:hover { background: var(--accent-hover); }
+    .btn-line { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+    .btn-line:hover { border-color: var(--ink); background: var(--surface-alt); }
+    .btn-sm { padding: 7px 12px; font-size: 12.5px; }
+
+    /* Section Header Bar */
+    .sec-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 28px; border-bottom: 1px solid var(--line);
+      background: var(--surface-alt); gap: 14px; flex-wrap: wrap;
+    }
+    .sec-index {
+      font-family: var(--mono); font-size: 11.5px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+    }
+    .sec-note { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+
+    /* HERO BENTO */
+    .hero-grid {
       display: grid;
-      grid-template-columns: 116px minmax(0, 1fr);
-      gap: 32px;
-      align-items: start;
-      border-bottom: 1px solid var(--rule);
+      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.95fr);
+      border-bottom: 1px solid var(--line);
     }
-    .portrait-wrap {
-      width: 116px;
-      height: 116px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 1px solid var(--rule);
-      background: var(--paper-subtle);
-      flex-shrink: 0;
+    .hero-main {
+      padding: 48px 36px 40px 28px;
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
     }
-    .portrait {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.06);
-      display: block;
+    .hero-kicker {
+      font-family: var(--mono); font-size: 12px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.03em; margin-bottom: 14px;
     }
-    .intro h1 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-weight: 400;
-      font-size: clamp(36px, 5.5vw, 48px);
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      margin-bottom: 14px;
-    }
-    .intro-lead {
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 560px;
-      margin-bottom: 14px;
-    }
-    .intro-lead strong { color: var(--ink); font-weight: 500; }
-    .intro-meta {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: var(--faint);
-      margin-bottom: 22px;
-    }
-    .links-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .link-underline {
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 2px;
-      transition: border-color 0.15s ease, color 0.15s ease;
-    }
-    .link-underline:hover { border-color: var(--ink); color: var(--ink); }
-    .link-primary {
-      color: var(--accent);
-      border-bottom: 1px solid rgba(79, 70, 229, 0.35);
-      padding-bottom: 2px;
-    }
-    .link-primary:hover { border-color: var(--accent); }
-
-    /* Sections */
-    section.block {
-      padding: 48px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    section.block:last-of-type { border-bottom: none; }
-    .block-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--faint);
-      margin-bottom: 20px;
-    }
-
-    /* Project Index — clean Swiss editorial list, zero AI box-shadows */
-    .project-list {
-      border-top: 1px solid var(--rule);
-    }
-    .project-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 12px 24px;
-      padding: 20px 8px;
-      margin: 0 -8px;
-      border-bottom: 1px solid var(--rule);
-      transition: background 0.12s ease;
-    }
-    .project-row:hover { background: var(--paper-subtle); }
-    .project-title-line {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 5px;
-    }
-    .project-title {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-    }
-    .project-kind {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11.5px;
-      color: var(--faint);
-    }
-    .project-desc {
-      font-size: 14.5px;
-      color: var(--muted);
-      max-width: 540px;
-    }
-    .project-stack {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--faint);
-      margin-top: 7px;
-    }
-    .project-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 8px;
-      white-space: nowrap;
-    }
-    .project-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--faint);
-    }
-    .project-action {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    .project-action:hover { text-decoration: underline; }
-
-    /* Services — two crisp editorial columns */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 36px;
-    }
-    .service-col h3 {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-weight: 400;
-      font-size: 26px;
-      line-height: 1.15;
-      margin-bottom: 8px;
-    }
-    .service-price {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: var(--ink);
-      margin-bottom: 12px;
-    }
-    .service-col p {
-      font-size: 14.5px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-    .plain-list {
-      list-style: none;
+    h1 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(34px, 4.4vw, 52px);
+      line-height: 1.04; letter-spacing: -0.035em;
       margin-bottom: 18px;
     }
-    .plain-list li {
-      font-size: 14px;
-      color: var(--ink);
-      padding: 4px 0 4px 16px;
-      position: relative;
+    .hero-sub {
+      font-size: 16px; color: var(--ink-2); max-width: 560px; line-height: 1.65;
     }
-    .plain-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--faint);
+    .hero-sub strong { color: var(--ink); font-weight: 600; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line); padding-top: 20px; gap: 16px;
     }
+    .stat-num {
+      font-family: var(--display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); }
 
-    /* Background / Skills */
-    .kv-list {
-      display: grid;
-      grid-template-columns: 150px minmax(0, 1fr);
-      gap: 12px 24px;
-      font-size: 14.5px;
+    /* Hero Right: Portrait & Telemetry Card */
+    .hero-side {
+      background: var(--surface-alt);
+      padding: 28px;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 20px;
     }
-    .kv-list dt {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: var(--faint);
-      padding-top: 3px;
+    .portrait-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+      padding: 22px; display: flex; flex-direction: column; gap: 18px;
     }
-    .kv-list dd { color: var(--muted); }
-    .kv-list dd strong { color: var(--ink); font-weight: 500; }
+    .portrait-top { display: flex; align-items: center; gap: 16px; }
+    .portrait-frame {
+      width: 92px; height: 92px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--surface);
+      box-shadow: 0 0 0 1px var(--line-strong);
+      flex-shrink: 0; background: #EDE9FE;
+    }
+    .portrait-frame img {
+      width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.07); display: block;
+    }
+    .portrait-info h2 {
+      font-family: var(--display); font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+    }
+    .portrait-info p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .live-row {
+      display: inline-flex; align-items: center; gap: 6px; margin-top: 7px;
+      font-family: var(--mono); font-size: 11px; color: var(--green); font-weight: 600;
+    }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--green);
+    }
+    .vitals {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+      border-top: 1px solid var(--line); padding-top: 14px;
+    }
+    .vital-cell {
+      background: var(--surface-alt); border: 1px solid var(--line);
+      border-radius: 8px; padding: 9px 11px;
+    }
+    .vital-k { font-family: var(--mono); font-size: 10.5px; color: var(--faint); text-transform: uppercase; }
+    .vital-v { font-size: 12.5px; font-weight: 600; color: var(--ink); margin-top: 2px; }
 
-    /* Footer */
+    .quick-links {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .qlink {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: 8px;
+      font-size: 13px; font-weight: 500;
+    }
+    .qlink:hover { border-color: var(--ink); }
+    .qlink span { font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+
+    /* FEATURED CASE STUDY: MERCHYON */
+    .featured-grid {
+      display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+      border-bottom: 1px solid var(--line);
+    }
+    .featured-copy {
+      padding: 36px 32px 36px 28px;
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; justify-content: space-between; gap: 18px;
+    }
+    .feat-tag {
+      font-family: var(--mono); font-size: 11px; font-weight: 600;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em;
+    }
+    .featured-copy h3 {
+      font-family: var(--display); font-size: 28px; font-weight: 700;
+      letter-spacing: -0.025em; margin-top: 6px; line-height: 1.15;
+    }
+    .featured-copy p { color: var(--ink-2); font-size: 14.5px; }
+    .arch-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .arch-points li {
+      font-size: 13.5px; color: var(--ink); padding-left: 18px; position: relative;
+    }
+    .arch-points li::before {
+      content: "→"; position: absolute; left: 0; color: var(--accent); font-family: var(--mono);
+    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono); font-size: 11.5px; color: var(--ink-2);
+      background: var(--surface-alt); border: 1px solid var(--line);
+      padding: 3px 8px; border-radius: 5px;
+    }
+    .featured-visual {
+      background: var(--surface-alt); padding: 28px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .browser-frame {
+      width: 100%; background: var(--surface);
+      border: 1px solid var(--line-strong); border-radius: 10px; overflow: hidden;
+    }
+    .browser-bar {
+      height: 32px; background: #F1F1ED; border-bottom: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 12px;
+    }
+    .dots { display: flex; gap: 6px; }
+    .dots i { width: 8px; height: 8px; border-radius: 50%; background: #D1D5DB; display: block; }
+    .browser-url {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--line);
+      padding: 2px 10px; border-radius: 4px;
+    }
+    .browser-frame img { width: 100%; display: block; height: auto; }
+
+    /* FILTERABLE PROJECT GRID */
+    .filter-bar {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .fbtn {
+      font-family: var(--mono); font-size: 12px; font-weight: 500;
+      padding: 5px 11px; border-radius: 6px;
+      border: 1px solid var(--line); background: var(--surface);
+      color: var(--ink-2); cursor: pointer;
+    }
+    .fbtn.active { background: var(--ink); color: #FFF; border-color: var(--ink); }
+
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+    .pcard {
+      padding: 26px 28px;
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 14px;
+      background: var(--surface);
+      transition: background 0.14s ease;
+    }
+    .pcard:nth-child(2n) { border-right: none; }
+    .pcard:hover { background: #FCFCFA; }
+    .pcard.hidden { display: none; }
+
+    /* Bespoke technical mini-previews inside cards */
+    .preview {
+      height: 116px; border-radius: 8px; border: 1px solid var(--line);
+      background: var(--surface-alt); padding: 12px 14px;
+      overflow: hidden; position: relative;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .preview-head {
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: var(--mono); font-size: 10.5px; color: var(--muted);
+    }
+    .preview-code {
+      font-family: var(--mono); font-size: 11.5px; line-height: 1.48; color: var(--ink);
+    }
+    .preview-code .ok { color: var(--green); font-weight: 600; }
+    .preview-code .hi { color: var(--accent); font-weight: 600; }
+    .preview-code .dim { color: var(--faint); }
+
+    /* Pipeline preview inside Demo card */
+    .flow-nodes {
+      display: flex; align-items: center; justify-content: space-between; gap: 6px; margin-top: 6px;
+    }
+    .fnode {
+      flex: 1; background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: 6px; padding: 7px 6px; text-align: center;
+      font-family: var(--mono); font-size: 10.5px; font-weight: 600;
+    }
+    .fnode.active-node { border-color: var(--accent); background: var(--accent-tint); color: var(--accent); }
+    .farrow { font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+    /* Presentation wireframe inside P-Office */
+    .slide-wire {
+      display: grid; grid-template-columns: 54px 1fr; gap: 8px; flex: 1; margin-top: 6px;
+    }
+    .slide-rail { display: flex; flex-direction: column; gap: 4px; }
+    .slide-thumb { height: 18px; border-radius: 3px; border: 1px solid var(--line-strong); background: var(--surface); }
+    .slide-thumb.sel { border-color: var(--accent); background: var(--accent-tint); }
+    .slide-canvas {
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: 5px;
+      padding: 8px 10px; display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    }
+    .wire-bar { height: 6px; border-radius: 3px; background: var(--ink); width: 58%; }
+    .wire-bar.sm { height: 4px; background: #D1D5DB; width: 82%; }
+    .wire-bar.xs { height: 4px; background: #E5E7EB; width: 46%; }
+
+    /* Bilingual preview inside Rustlingo */
+    .bi-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 8px; margin-top: 6px; }
+    .bi-box {
+      background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: 6px; padding: 7px 9px; font-family: var(--mono); font-size: 11px;
+    }
+    .bi-box.ar { font-family: var(--sans); text-align: right; color: var(--ink-2); font-size: 12px; }
+
+    /* Ternary matrix inside BitNet card */
+    .t-row { display: flex; gap: 6px; align-items: center; margin-top: 6px; flex-wrap: wrap; }
+    .t-tile {
+      font-family: var(--mono); font-size: 12px; font-weight: 700;
+      width: 30px; height: 28px; border-radius: 5px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--line-strong); background: var(--surface);
+    }
+    .t-tile.neg { background: #FFF7ED; border-color: #FDBA74; color: #C2410C; }
+    .t-tile.pos { background: var(--green-tint); border-color: #99F6E4; color: var(--green); }
+
+    .pcard-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+    .pcard h3 { font-family: var(--display); font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+    .pcard-cat { font-family: var(--mono); font-size: 11px; color: var(--faint); text-transform: uppercase; }
+    .pcard p { font-size: 14px; color: var(--ink-2); }
+    .pcard-foot {
+      margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    }
+    .pcard-link {
+      font-size: 13px; font-weight: 600; color: var(--accent);
+    }
+    .pcard-link:hover { text-decoration: underline; }
+
+    /* ARCHITECTURE / CAPABILITIES 3-COL */
+    .cap-grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+    .cap-col {
+      padding: 28px; border-right: 1px solid var(--line);
+    }
+    .cap-col:last-child { border-right: none; }
+    .cap-num { font-family: var(--mono); font-size: 11.5px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+    .cap-col h3 { font-family: var(--display); font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .cap-col p { font-size: 13.5px; color: var(--ink-2); margin-bottom: 14px; }
+
+    /* WORK WITH ME (2-COL CLEAN SPLIT) */
+    .offer-grid {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line);
+    }
+    .offer-col {
+      padding: 34px 28px; border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .offer-col:last-child { border-right: none; background: var(--surface-alt); }
+    .offer-price {
+      font-family: var(--display); font-size: 32px; font-weight: 700; letter-spacing: -0.03em;
+      display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    }
+    .offer-price small { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; }
+    .offer-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .offer-list li { font-size: 14px; color: var(--ink); padding-left: 18px; position: relative; }
+    .offer-list li::before { content: "+"; position: absolute; left: 0; font-family: var(--mono); color: var(--accent); font-weight: 700; }
+
+    /* FOOTER / CONTACT STRIP */
+    .contact-strip {
+      padding: 36px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+    }
+    .contact-strip h2 { font-family: var(--display); font-size: 24px; letter-spacing: -0.025em; margin-bottom: 4px; }
+    .contact-strip p { font-size: 14.5px; color: var(--ink-2); }
     footer {
-      padding: 28px 0 48px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--faint);
+      padding: 20px 28px; background: var(--surface-alt);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 12px; color: var(--muted);
     }
-    .footer-links { display: flex; gap: 18px; }
-    .footer-links a:hover { color: var(--ink); }
+    footer a:hover { color: var(--ink); }
 
-    @media (max-width: 660px) {
-      .intro { grid-template-columns: 1fr; gap: 20px; padding: 40px 0 36px; }
-      .portrait-wrap { width: 88px; height: 88px; }
-      .project-row { grid-template-columns: 1fr; gap: 8px; }
-      .project-right { flex-direction: row; align-items: center; justify-content: space-between; }
-      .two-col { grid-template-columns: 1fr; gap: 32px; }
-      .kv-list { grid-template-columns: 1fr; gap: 4px; }
-      .kv-list dt { margin-top: 10px; }
-      .nav a.hide-sm { display: none; }
+    @media (max-width: 900px) {
+      .hero-grid, .featured-grid, .projects-grid, .cap-grid, .offer-grid { grid-template-columns: 1fr; }
+      .hero-main, .featured-copy, .pcard, .cap-col, .offer-col { border-right: none; }
+      .hero-main, .featured-copy, .cap-col, .offer-col { border-bottom: 1px solid var(--line); }
+      .nav-links, .clock-chip { display: none; }
+      .nav, .hero-main, .hero-side, .featured-copy, .featured-visual, .pcard, .cap-col, .offer-col, .contact-strip, .sec-bar { padding-left: 18px; padding-right: 18px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap topbar">
-      <a class="site-name" href="/">Mohamed Sehli</a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#projects" data-i18n="nav_projects">Projects</a>
-        <a href="#work-with-me" class="hide-sm" data-i18n="nav_services">Services</a>
-        <a href="/demo" data-i18n="nav_demo">Live Demo</a>
-        <a href="#contact" class="hide-sm" data-i18n="nav_contact">Contact</a>
-        <button id="langToggle" class="lang-switch" type="button" aria-label="Switch language">FR</button>
-      </nav>
-    </div>
-  </header>
+  <div class="scroll-bar" id="scrollBar" aria-hidden="true"></div>
 
-  <main class="wrap">
-    <section class="intro">
-      <div class="portrait-wrap">
-        <img class="portrait" src="/avatar.jpg" alt="Portrait of Mohamed Sehli" width="116" height="116" onerror="this.onerror=null;this.src='avatar.jpg';" />
+  <div class="shell">
+    <header>
+      <div class="nav">
+        <a class="brand" href="/">
+          <span class="brand-mark">MS</span>
+          <span>Mohamed Sehli</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#featured" data-i18n="nav_work">Work</a>
+          <a href="#projects" data-i18n="nav_projects">Projects</a>
+          <a href="#capabilities" data-i18n="nav_stack">Engineering</a>
+          <a href="#services" data-i18n="nav_services">Services</a>
+          <a href="/demo" data-i18n="nav_demo">Live Demo</a>
+        </nav>
+        <div class="nav-right">
+          <span class="clock-chip" id="meknesClock">MA · --:--</span>
+          <button id="langToggle" class="lang-btn" type="button" aria-label="Switch language">FR</button>
+          <a class="btn btn-dark btn-sm" href="/demo" data-i18n="nav_cta">Open Demo →</a>
+        </div>
       </div>
-      <div>
-        <h1>Mohamed Sehli</h1>
-        <p class="intro-lead" data-i18n="intro_lead">
-          Software developer and CS Education student in Meknes, Morocco. I build <strong>web applications</strong>, <strong>workflow automations</strong> for small businesses, and <strong>Rust systems</strong> — from bare-metal kernels to production SaaS.
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-grid">
+      <div class="hero-main">
+        <div>
+          <div class="hero-kicker" data-i18n="hero_kicker">FULL-STACK · AUTOMATION · RUST SYSTEMS</div>
+          <h1 data-i18n="hero_title">Engineering web apps, automations &amp; systems that actually ship.</h1>
+          <p class="hero-sub" data-i18n="hero_sub">
+            I'm <strong>Mohamed Sehli</strong>, a CS Education student at ENS Meknes building production SaaS (<strong>Merchyon</strong>), bare-metal &amp; desktop Rust software (<strong>SirajOS</strong>, <strong>P-Office</strong>), and custom <strong>$500 website + workflow automation systems</strong> for small businesses worldwide.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="/demo" data-i18n="cta_demo">Launch Live $500 Demo →</a>
+            <button id="copyEmailBtn" class="btn btn-line" type="button" data-i18n="cta_copy">Copy sehlisimo50@gmail.com</button>
+            <a class="btn btn-line" href="https://github.com/simosehli2" target="_blank" rel="noopener">GitHub ↗</a>
+            <a class="btn btn-line" href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">8+</div>
+            <div class="stat-label" data-i18n="st_1">Shipped Systems &amp; Apps</div>
+          </div>
+          <div>
+            <div class="stat-num">GMT+1</div>
+            <div class="stat-label" data-i18n="st_2">Europe Overlap · EN / FR / AR</div>
+          </div>
+          <div>
+            <div class="stat-num">7 Days</div>
+            <div class="stat-label" data-i18n="st_3">Fixed-Scope Pack Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-side">
+        <div class="portrait-card">
+          <div class="portrait-top">
+            <div class="portrait-frame">
+              <img src="/avatar.jpg" alt="Mohamed Sehli portrait" width="92" height="92" onerror="this.onerror=null;this.src='avatar.jpg';" />
+            </div>
+            <div class="portrait-info">
+              <h2>Mohamed Sehli</h2>
+              <p data-i18n="card_role">CS Student @ ENS Meknes</p>
+              <div class="live-row"><span class="live-dot"></span><span data-i18n="card_avail">Open to Remote Work</span></div>
+            </div>
+          </div>
+
+          <div class="vitals">
+            <div class="vital-cell">
+              <div class="vital-k" data-i18n="v1_k">Location</div>
+              <div class="vital-v">Meknes, Morocco</div>
+            </div>
+            <div class="vital-cell">
+              <div class="vital-k" data-i18n="v2_k">Core Stack</div>
+              <div class="vital-v">Next.js · Rust · Python</div>
+            </div>
+            <div class="vital-cell">
+              <div class="vital-k" data-i18n="v3_k">Leadership</div>
+              <div class="vital-v">Enactus ENS President</div>
+            </div>
+            <div class="vital-cell">
+              <div class="vital-k" data-i18n="v4_k">Flagship SaaS</div>
+              <div class="vital-v">merchyon.com</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-links">
+          <a class="qlink" href="https://merchyon.com" target="_blank" rel="noopener">Merchyon <span>LIVE ↗</span></a>
+          <a class="qlink" href="/demo">Automation Demo <span>KV API →</span></a>
+          <a class="qlink" href="#projects">SirajOS &amp; P-Office <span>RUST ↓</span></a>
+          <a class="qlink" href="#services">$500 Pack <span>7 DAYS ↓</span></a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- 01 / FEATURED PRODUCTION SAAS -->
+    <div class="sec-bar" id="featured">
+      <span class="sec-index" data-i18n="sec1_idx">01 / Flagship Production SaaS</span>
+      <span class="sec-note">HTTPS · 24/7 CLOUDFLARE EDGE FAILOVER</span>
+    </div>
+
+    <section class="featured-grid">
+      <div class="featured-copy">
+        <div>
+          <div class="feat-tag" data-i18n="feat_tag">Live Commercial Product · 2026</div>
+          <h3>Merchyon</h3>
+          <p style="margin-top:10px;" data-i18n="feat_desc">
+            End-to-end automation platform built for Etsy and Amazon Merch on Demand sellers. Orchestrates batch artwork generation, automated background removal, lifestyle mockup rendering queues, and programmatic 13-tag SEO publishing in a single pipeline.
+          </p>
+        </div>
+
+        <ul class="arch-points">
+          <li data-i18n="feat_b1">Asynchronous Redis + BullMQ worker queues handling heavy image &amp; mockup pipelines</li>
+          <li data-i18n="feat_b2">PostgreSQL persistence, Clerk authentication, and Paddle subscription billing</li>
+          <li data-i18n="feat_b3">Custom Cloudflare Worker edge failover keeping merchyon.com online 24/7 at $0 server cost</li>
+        </ul>
+
+        <div class="tag-row">
+          <span class="tag">Next.js</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Redis / BullMQ</span>
+          <span class="tag">Cloudflare Workers</span>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn btn-dark btn-sm" href="https://merchyon.com" target="_blank" rel="noopener">Visit merchyon.com ↗</a>
+          <a class="btn btn-line btn-sm" href="https://merchyon.com/features" target="_blank" rel="noopener" data-i18n="feat_btn2">Explore Tools ↗</a>
+        </div>
+      </div>
+
+      <div class="featured-visual">
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <div class="browser-url">https://merchyon.com</div>
+            <span style="font-family:var(--mono);font-size:10px;color:var(--green);font-weight:600;">200 OK</span>
+          </div>
+          <img src="/merchyon.jpg" alt="Live screenshot of Merchyon application UI" width="1100" height="578" onerror="this.onerror=null;this.src='merchyon.jpg';" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 / FILTERABLE PROJECTS GRID -->
+    <div class="sec-bar" id="projects">
+      <span class="sec-index" data-i18n="sec2_idx">02 / Selected Engineering Projects (7)</span>
+      <div class="filter-bar" role="group" aria-label="Filter projects">
+        <button class="fbtn active" data-filter="all" type="button">All</button>
+        <button class="fbtn" data-filter="web" type="button">Web &amp; SaaS</button>
+        <button class="fbtn" data-filter="rust" type="button">Rust &amp; Systems</button>
+        <button class="fbtn" data-filter="ai" type="button">AI &amp; Automation</button>
+      </div>
+    </div>
+
+    <section class="projects-grid">
+      <!-- 1. SMB Demo -->
+      <article class="pcard" data-cat="web ai">
+        <div class="preview">
+          <div class="preview-head"><span>WORKFLOW PIPELINE · LIVE KV</span><span style="color:var(--green);">201 CREATED</span></div>
+          <div class="flow-nodes">
+            <div class="fnode">Intake</div><span class="farrow">→</span>
+            <div class="fnode active-node">Score + KV</div><span class="farrow">→</span>
+            <div class="fnode">Email</div><span class="farrow">→</span>
+            <div class="fnode">Day-3 Task</div>
+          </div>
+          <div class="preview-head"><span>POST /api/inquiries</span><span>CSV &amp; Webhook Ready</span></div>
+        </div>
+        <div class="pcard-head">
+          <h3>SMB Website + Automation Demo</h3>
+          <span class="pcard-cat">Live Demo</span>
+        </div>
+        <p data-i18n="p_demo">
+          Interactive proof of my $500 small-business pack: test Accounting, Clinic, or Local Service presets with real Cloudflare KV persistence, lead scoring, instant client email drafting, Day-3 follow-ups, and CSV export.
         </p>
-        <div class="intro-meta" data-i18n="intro_meta">
-          Meknes, Morocco (GMT+1) · Arabic, French &amp; English · Remote Worldwide
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Cloudflare Workers</span><span class="tag">KV</span><span class="tag">REST API</span></div>
+          <a class="pcard-link" href="/demo" data-i18n="p_demo_cta">Launch Demo →</a>
         </div>
-        <div class="links-row">
-          <a class="link-primary" href="/demo" data-i18n="cta_demo">Try the live $500 automation demo →</a>
-          <a class="link-underline" href="mailto:sehlisimo50@gmail.com">sehlisimo50@gmail.com</a>
-          <a class="link-underline" href="https://github.com/simosehli2" target="_blank" rel="noopener">GitHub</a>
-          <a class="link-underline" href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">LinkedIn</a>
+      </article>
+
+      <!-- 2. SirajOS -->
+      <article class="pcard" data-cat="rust">
+        <div class="preview">
+          <div class="preview-head"><span>qemu-system-x86_64 · VGA 80×25</span><span>no_std</span></div>
+          <div class="preview-code">
+            <div><span class="ok">[ OK ]</span> SirajOS Kernel v0.1 booted (x86_64)</div>
+            <div><span class="ok">[ OK ]</span> GDT / IDT interrupt handlers loaded</div>
+            <div><span class="hi">siraj&gt;</span> <span class="dim">minimal educational OS in Rust_</span></div>
+          </div>
         </div>
-      </div>
+        <div class="pcard-head">
+          <h3>SirajOS</h3>
+          <span class="pcard-cat">OS Kernel</span>
+        </div>
+        <p data-i18n="p_siraj">
+          Minimal educational bare-metal x86_64 operating system kernel written from scratch in Rust to explore bootloading, VGA text buffer drivers, hardware interrupts, and low-level memory layout under QEMU.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Rust</span><span class="tag">x86_64</span><span class="tag">Bootloader</span><span class="tag">QEMU</span></div>
+          <span class="pcard-cat">Systems</span>
+        </div>
+      </article>
+
+      <!-- 3. P-Office -->
+      <article class="pcard" data-cat="rust">
+        <div class="preview">
+          <div class="preview-head"><span>P-OFFICE · CARGO WORKSPACE</span><span>egui + axum</span></div>
+          <div class="slide-wire">
+            <div class="slide-rail">
+              <div class="slide-thumb sel"></div>
+              <div class="slide-thumb"></div>
+              <div class="slide-thumb"></div>
+            </div>
+            <div class="slide-canvas">
+              <div class="wire-bar"></div>
+              <div class="wire-bar sm"></div>
+              <div class="wire-bar xs"></div>
+            </div>
+          </div>
+        </div>
+        <div class="pcard-head">
+          <h3>P-Office</h3>
+          <span class="pcard-cat">Desktop Suite</span>
+        </div>
+        <p data-i18n="p_poffice">
+          Rust monorepo for a native desktop office suite starting with the Presentation module — combining an eframe/egui GUI frontend, an Axum backend API, and shared typed data crates.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Rust</span><span class="tag">eframe / egui</span><span class="tag">Axum</span></div>
+          <span class="pcard-cat">Monorepo</span>
+        </div>
+      </article>
+
+      <!-- 4. Rustlingo -->
+      <article class="pcard" data-cat="rust web">
+        <div class="preview">
+          <div class="preview-head"><span>RUSTLINGO · EN / AR</span><span>TAURI APP</span></div>
+          <div class="bi-split">
+            <div class="bi-box"><span class="hi">fn</span> borrow(s: &amp;str) { ... }</div>
+            <div class="bi-box ar" dir="rtl">تعلّم لغة Rust و Java 17 تفاعلياً</div>
+          </div>
+          <div class="preview-head"><span>Compiler Check: Passed</span><span>Rust · Java 17</span></div>
+        </div>
+        <div class="pcard-head">
+          <h3>Rustlingo</h3>
+          <span class="pcard-cat">EdTech App</span>
+        </div>
+        <p data-i18n="p_rustlingo">
+          Bilingual (English &amp; Arabic) gamified desktop application for learning Rust and Modern Java 17 from zero through interactive exercises, visual metaphors, and real compiler feedback.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Tauri</span><span class="tag">Rust</span><span class="tag">Java 17</span><span class="tag">Node.js</span></div>
+          <span class="pcard-cat">Desktop</span>
+        </div>
+      </article>
+
+      <!-- 5. Etsy Spy Pro -->
+      <article class="pcard" data-cat="web ai">
+        <div class="preview">
+          <div class="preview-head"><span>ETSY SPY PRO · SHOP ANALYTICS</span><span>TAURI v2</span></div>
+          <svg viewBox="0 0 320 56" width="100%" height="56" aria-hidden="true">
+            <polyline fill="none" stroke="#E2E2DC" stroke-width="1" points="0,48 320,48" />
+            <polyline fill="none" stroke="#4338CA" stroke-width="2.2" points="4,42 48,36 92,39 136,24 180,28 224,15 268,19 314,8" />
+            <circle cx="224" cy="15" r="3.5" fill="#4338CA" />
+            <circle cx="314" cy="8" r="3.5" fill="#0F766E" />
+          </svg>
+          <div class="preview-head"><span>Sold Listings Parser</span><span>Price &amp; SEO Trends</span></div>
+        </div>
+        <div class="pcard-head">
+          <h3>Etsy Spy Pro</h3>
+          <span class="pcard-cat">E-Commerce Intel</span>
+        </div>
+        <p data-i18n="p_etsyspy">
+          Desktop competitor-intelligence app for Etsy sellers that extracts real sold-page storefront data to uncover pricing bands, winning product niches, and SEO tag opportunities.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Tauri v2</span><span class="tag">TypeScript</span><span class="tag">Vite</span></div>
+          <span class="pcard-cat">Analytics</span>
+        </div>
+      </article>
+
+      <!-- 6. Merchyon Design Research -->
+      <article class="pcard" data-cat="web ai">
+        <div class="preview">
+          <div class="preview-head"><span>CHROME EXTENSION · MANIFEST V3</span><span>v3.6</span></div>
+          <div class="preview-code">
+            <div><span class="dim">site:</span> etsy.com / amazon.com</div>
+            <div><span class="hi">action:</span> [ Use This Design ] → POST /api/queue</div>
+            <div><span class="ok">status:</span> artwork + metadata synced to Merchyon</div>
+          </div>
+        </div>
+        <div class="pcard-head">
+          <h3>Merchyon Design Research</h3>
+          <span class="pcard-cat">Chrome Extension</span>
+        </div>
+        <p data-i18n="p_ext">
+          Manifest V3 browser extension injecting one-click extraction controls onto Etsy and Amazon product pages to send titles and reference assets straight into Merchyon's automated queue.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">Manifest V3</span><span class="tag">JavaScript</span><span class="tag">REST API</span></div>
+          <span class="pcard-cat">Browser</span>
+        </div>
+      </article>
+
+      <!-- 7. BitNet + LinkedIn CLI/MCP -->
+      <article class="pcard" data-cat="ai rust" style="grid-column: 1 / -1; border-right: none;">
+        <div class="preview" style="height:auto; gap:8px;">
+          <div class="preview-head"><span>BITNET B1.58 (W1.58A8) &amp; LINKEDIN POSTS API CLI / MCP</span><span>13/13 TESTS PASS</span></div>
+          <div class="t-row">
+            <span class="t-tile neg">-1</span>
+            <span class="t-tile">0</span>
+            <span class="t-tile pos">+1</span>
+            <span class="preview-code" style="margin-left:6px;"><span class="dim">bitnet.cpp AVX2 CPU (8 GB RAM)</span> · <span class="ok">POST /rest/posts → 201 Created</span></span>
+          </div>
+        </div>
+        <div class="pcard-head">
+          <h3>BitNet b1.58 CPU Setup &amp; LinkedIn API CLI / MCP</h3>
+          <span class="pcard-cat">AI &amp; Tooling</span>
+        </div>
+        <p data-i18n="p_tools">
+          Compiled Microsoft Research's native 1.58-bit ternary LLM engine (bitnet.cpp) from source on an 8 GB RAM 11th Gen Intel Core i5 Linux laptop running strictly on CPU kernels — alongside a zero-dependency Python OAuth 2.0 LinkedIn Posts API CLI &amp; MCP server featuring Little Text Format escaping and Rest.li live updates.
+        </p>
+        <div class="pcard-foot">
+          <div class="tag-row"><span class="tag">C++ / bitnet.cpp</span><span class="tag">Python stdlib</span><span class="tag">OAuth 2.0</span><span class="tag">MCP JSON-RPC</span></div>
+          <a class="pcard-link" href="https://www.linkedin.com/feed/update/urn:li:share:7530665162572374017/" target="_blank" rel="noopener" data-i18n="p_tools_cta">Read BitNet Breakdown ↗</a>
+        </div>
+      </article>
     </section>
 
-    <section class="block" id="projects">
-      <div class="block-label" data-i18n="sec_projects">Selected Projects</div>
-      <div class="project-list">
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <a class="project-title" href="https://merchyon.com" target="_blank" rel="noopener">Merchyon</a>
-              <span class="project-kind" data-i18n="k_merchyon">Production SaaS</span>
-            </div>
-            <p class="project-desc" data-i18n="d_merchyon">
-              End-to-end Etsy &amp; Amazon Merch on Demand automation platform: batch artwork generation, background removal, lifestyle mockup rendering queues, 13-tag SEO generation, and 24/7 Cloudflare Workers edge failover.
-            </p>
-            <div class="project-stack">Next.js · TypeScript · PostgreSQL · Redis / BullMQ · Cloudflare Workers</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <a class="project-action" href="https://merchyon.com" target="_blank" rel="noopener">merchyon.com ↗</a>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <a class="project-title" href="/demo">SMB Website + Automation Demo</a>
-              <span class="project-kind" data-i18n="k_demo">Live Demo</span>
-            </div>
-            <p class="project-desc" data-i18n="d_demo">
-              Interactive client-intake workflow for small businesses (accounting, clinics, local services): lead qualification, Cloudflare KV CRM persistence, instant confirmation email generation, Day-3 follow-up task, and CSV/webhook export.
-            </p>
-            <div class="project-stack">Cloudflare Workers · Cloudflare KV · REST API · Vanilla JS</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <a class="project-action" href="/demo" data-i18n="a_demo">Open demo →</a>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <span class="project-title">SirajOS</span>
-              <span class="project-kind" data-i18n="k_siraj">Systems / OS Kernel</span>
-            </div>
-            <p class="project-desc" data-i18n="d_siraj">
-              Minimal educational bare-metal x86_64 operating system kernel written from scratch in Rust to explore bootloading, VGA output, interrupts, and memory management under QEMU.
-            </p>
-            <div class="project-stack">Rust · x86_64 bare-metal · Bootloader · QEMU</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <span class="project-year">Rust</span>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <span class="project-title">P-Office</span>
-              <span class="project-kind" data-i18n="k_poffice">Desktop Suite</span>
-            </div>
-            <p class="project-desc" data-i18n="d_poffice">
-              Rust workspace monorepo for a native desktop office suite starting with a Presentation module — pairing an egui/eframe desktop client with an Axum API backend and shared data crates.
-            </p>
-            <div class="project-stack">Rust · eframe / egui · Axum · Cargo Workspace</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <span class="project-year">Rust</span>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <span class="project-title">Rustlingo</span>
-              <span class="project-kind" data-i18n="k_rustlingo">EdTech Desktop App</span>
-            </div>
-            <p class="project-desc" data-i18n="d_rustlingo">
-              Bilingual (English &amp; Arabic) gamified desktop application for learning Rust and Modern Java 17 through interactive exercises, compiler feedback, and visual metaphors.
-            </p>
-            <div class="project-stack">Tauri · Node.js · Rust · Java 17</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <span class="project-year">Tauri</span>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <span class="project-title">Etsy Spy Pro</span>
-              <span class="project-kind" data-i18n="k_etsyspy">E-Commerce Analytics</span>
-            </div>
-            <p class="project-desc" data-i18n="d_etsyspy">
-              Desktop competitor-research tool for Etsy sellers that parses storefront sold listings to surface pricing trends, high-performing products, and keyword gaps.
-            </p>
-            <div class="project-stack">Tauri v2 · TypeScript · Vite · Data Extraction</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <span class="project-year">Desktop</span>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <span class="project-title">Merchyon Design Research</span>
-              <span class="project-kind" data-i18n="k_ext">Chrome Extension</span>
-            </div>
-            <p class="project-desc" data-i18n="d_ext">
-              Manifest V3 browser extension for Etsy and Amazon that extracts product artwork, metadata, and titles directly into the Merchyon generation pipeline with one click.
-            </p>
-            <div class="project-stack">Chrome Manifest V3 · JavaScript · REST Integration</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <span class="project-year">Extension</span>
-          </div>
-        </article>
-
-        <article class="project-row">
-          <div>
-            <div class="project-title-line">
-              <a class="project-title" href="https://www.linkedin.com/feed/update/urn:li:share:7530665162572374017/" target="_blank" rel="noopener">BitNet b1.58 &amp; LinkedIn API Tooling</a>
-              <span class="project-kind" data-i18n="k_tools">AI / Automation</span>
-            </div>
-            <p class="project-desc" data-i18n="d_tools">
-              Compiled Microsoft Research's native 1.58-bit ternary LLM engine (bitnet.cpp) on CPU-only Linux hardware, plus built a zero-dependency Python LinkedIn Posts API CLI &amp; MCP server with Little Text Format escaping and unit tests.
-            </p>
-            <div class="project-stack">C++ / bitnet.cpp · Python stdlib · OAuth 2.0 · MCP</div>
-          </div>
-          <div class="project-right">
-            <span class="project-year">2026</span>
-            <a class="project-action" href="https://www.linkedin.com/feed/update/urn:li:share:7530665162572374017/" target="_blank" rel="noopener" data-i18n="a_post">Read note ↗</a>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="block" id="work-with-me">
-      <div class="block-label" data-i18n="sec_services">Working Together</div>
-      <div class="two-col">
-        <div class="service-col">
-          <h3 data-i18n="s1_title">Website + Automation Pack</h3>
-          <div class="service-price" data-i18n="s1_price">$500 flat (~460 €) · 7-day delivery</div>
-          <p data-i18n="s1_desc">For small service businesses (accounting, clinics, studios, local services) losing leads to slow websites and manual inbox admin.</p>
-          <ul class="plain-list">
-            <li data-i18n="s1_l1">Clean, fast website or landing page refresh</li>
-            <li data-i18n="s1_l2">1 automated intake → CRM/Sheet → email → Day-3 follow-up workflow</li>
-            <li data-i18n="s1_l3">50% upfront ($250), 50% on live delivery ($250)</li>
-          </ul>
-          <a class="link-primary" href="/demo" data-i18n="s1_cta">Test the live workflow demo →</a>
-        </div>
-
-        <div class="service-col">
-          <h3 data-i18n="s2_title">Part-Time Agency Overflow</h3>
-          <div class="service-price" data-i18n="s2_price">$25–$35/hr · or $350–$500/mo retainer</div>
-          <p data-i18n="s2_desc">10–15 hrs/week remote developer support for French, UK, Canadian, and US web &amp; e-commerce agencies.</p>
-          <ul class="plain-list">
-            <li data-i18n="s2_l1">Next.js, React, PostgreSQL &amp; Node.js features</li>
-            <li data-i18n="s2_l2">Python data scripts, API webhooks &amp; BullMQ workers</li>
-            <li data-i18n="s2_l3">Same workday overlap with Europe (GMT+1) &amp; fluent FR/EN</li>
-          </ul>
-          <a class="link-underline" href="mailto:sehlisimo50@gmail.com?subject=Part-Time%20Agency%20Support" data-i18n="s2_cta">Send a trial task →</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="block" id="contact">
-      <div class="block-label" data-i18n="sec_about">Background &amp; Contact</div>
-      <dl class="kv-list">
-        <dt data-i18n="bg_edu_k">Education</dt>
-        <dd data-i18n="bg_edu_v"><strong>CS Education</strong> — École Normale Supérieure (ENS Meknes), Université Moulay Ismail · President, Enactus ENS Meknes</dd>
-
-        <dt data-i18n="bg_stack_k">Primary Stack</dt>
-        <dd>Next.js, React, TypeScript, Node.js, PostgreSQL, Redis/BullMQ, Python, Rust, C, Cloudflare Workers &amp; KV, Linux</dd>
-
-        <dt data-i18n="bg_lang_k">Languages</dt>
-        <dd data-i18n="bg_lang_v">Arabic (native), French (fluent), English (fluent)</dd>
-
-        <dt data-i18n="bg_email_k">Direct Email</dt>
-        <dd><a class="link-underline" href="mailto:sehlisimo50@gmail.com">sehlisimo50@gmail.com</a></dd>
-      </dl>
-    </section>
-  </main>
-
-  <footer class="wrap">
-    <span>© 2026 Mohamed Sehli</span>
-    <div class="footer-links">
-      <a href="/demo">Demo</a>
-      <a href="https://merchyon.com" target="_blank" rel="noopener">Merchyon</a>
-      <a href="https://github.com/simosehli2" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">LinkedIn</a>
+    <!-- 03 / ENGINEERING CAPABILITIES -->
+    <div class="sec-bar" id="capabilities">
+      <span class="sec-index" data-i18n="sec3_idx">03 / Engineering Capabilities</span>
+      <span class="sec-note">NEXT.JS · POSTGRESQL · PYTHON · RUST · CLOUDFLARE</span>
     </div>
-  </footer>
+
+    <section class="cap-grid">
+      <div class="cap-col">
+        <div class="cap-num">01 / WEB &amp; SAAS</div>
+        <h3 data-i18n="c1_t">Full-Stack Web Apps</h3>
+        <p data-i18n="c1_d">Fast, SEO-ready Next.js/React frontends backed by PostgreSQL schemas, auth, billing, and resilient edge hosting.</p>
+        <div class="tag-row"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Tailwind</span></div>
+      </div>
+      <div class="cap-col">
+        <div class="cap-num">02 / AUTOMATION</div>
+        <h3 data-i18n="c2_t">Workflows &amp; Queues</h3>
+        <p data-i18n="c2_d">Eliminating manual inbox/spreadsheet work via webhooks, Redis/BullMQ queues, Python data pipelines, and CRM/email automation.</p>
+        <div class="tag-row"><span class="tag">Python</span><span class="tag">BullMQ / Redis</span><span class="tag">Webhooks</span><span class="tag">Workers / KV</span></div>
+      </div>
+      <div class="cap-col">
+        <div class="cap-num">03 / SYSTEMS</div>
+        <h3 data-i18n="c3_t">Rust &amp; Desktop Tools</h3>
+        <p data-i18n="c3_d">Native cross-platform apps (Tauri, egui/eframe), Axum APIs, Chrome MV3 extensions, Linux systemd ops, and OS-level Rust/C.</p>
+        <div class="tag-row"><span class="tag">Rust</span><span class="tag">Tauri v2</span><span class="tag">Axum</span><span class="tag">Linux</span></div>
+      </div>
+    </section>
+
+    <!-- 04 / SERVICES & PRICING -->
+    <div class="sec-bar" id="services">
+      <span class="sec-index" data-i18n="sec4_idx">04 / Work With Me</span>
+      <span class="sec-note">PAYONEER / WISE INVOICE · EN &amp; FR</span>
+    </div>
+
+    <section class="offer-grid">
+      <div class="offer-col">
+        <div class="feat-tag" data-i18n="o1_tag">FIXED-SCOPE · SMALL BUSINESSES</div>
+        <h3 style="font-family:var(--display);font-size:22px;letter-spacing:-0.02em;" data-i18n="o1_title">Website + Automation Pack</h3>
+        <div class="offer-price">$500 <small data-i18n="o1_sub">flat (~460 €) · 7-day delivery</small></div>
+        <p style="font-size:14px;color:var(--ink-2);" data-i18n="o1_desc">For clinics, accounting firms, studios, and local service teams tired of losing leads to slow websites and manual inbox follow-ups.</p>
+        <ul class="offer-list">
+          <li data-i18n="o1_l1">Clean, fast modern website or landing page refresh</li>
+          <li data-i18n="o1_l2">1 end-to-end automated workflow (intake → CRM/Sheet → instant email → Day-3 reminder)</li>
+          <li data-i18n="o1_l3">Zero monthly server bill option (Cloudflare / Vercel free tier)</li>
+          <li data-i18n="o1_l4">Simple split: 50% upfront ($250) · 50% on live handoff ($250)</li>
+        </ul>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; padding-top:6px;">
+          <a class="btn btn-accent btn-sm" href="/demo" data-i18n="o1_b1">Test Live Demo →</a>
+          <a class="btn btn-line btn-sm" href="mailto:sehlisimo50@gmail.com?subject=500%20Website%20%2B%20Automation%20Pack" data-i18n="o1_b2">Book This Pack</a>
+        </div>
+      </div>
+
+      <div class="offer-col">
+        <div class="feat-tag" data-i18n="o2_tag">PART-TIME · DIGITAL AGENCIES</div>
+        <h3 style="font-family:var(--display);font-size:22px;letter-spacing:-0.02em;" data-i18n="o2_title">Engineering Overflow Retainer</h3>
+        <div class="offer-price">$25–$35 <small data-i18n="o2_sub">/ hour · or $350–$500/mo retainer</small></div>
+        <p style="font-size:14px;color:var(--ink-2);" data-i18n="o2_desc">10–15 hrs/week reliable engineering capacity for French, UK, Canadian, and US agencies needing extra shipping speed without a full-time hire.</p>
+        <ul class="offer-list">
+          <li data-i18n="o2_l1">Next.js / React frontend &amp; PostgreSQL / Node.js backend delivery</li>
+          <li data-i18n="o2_l2">Python data cleaning, catalog migration scripts &amp; API webhooks</li>
+          <li data-i18n="o2_l3">Background job queues (Redis/BullMQ) &amp; Cloudflare edge workers</li>
+          <li data-i18n="o2_l4">Direct GMT+1 overlap with Europe &amp; morning North America</li>
+        </ul>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; padding-top:6px;">
+          <a class="btn btn-dark btn-sm" href="mailto:sehlisimo50@gmail.com?subject=Part-Time%20Agency%20Support" data-i18n="o2_b1">Send a Trial Task</a>
+          <a class="btn btn-line btn-sm" href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-strip" id="contact">
+      <div>
+        <h2 data-i18n="ct_title">Need a fast build or workflow automated?</h2>
+        <p data-i18n="ct_sub">Send your website URL and the manual bottleneck slowing your team down. I reply within 24 hours.</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn btn-accent" href="mailto:sehlisimo50@gmail.com?subject=Project%20Inquiry">sehlisimo50@gmail.com</a>
+        <a class="btn btn-line" href="https://github.com/simosehli2" target="_blank" rel="noopener">GitHub ↗</a>
+        <a class="btn btn-line" href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 MOHAMED SEHLI · MEKNES, MOROCCO (GMT+1)</span>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a href="/demo">/demo</a>
+        <a href="https://merchyon.com" target="_blank" rel="noopener">merchyon.com</a>
+        <a href="https://github.com/simosehli2" target="_blank" rel="noopener">github/simosehli2</a>
+        <a href="https://www.linkedin.com/in/mohamed-sehli" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </footer>
+  </div>
 
   <script>
+    // Scroll progress bar
+    window.addEventListener("scroll", () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      document.getElementById("scrollBar").style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    }, { passive: true });
+
+    // Live Meknes GMT+1 clock
+    function tickClock() {
+      try {
+        const t = new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Casablanca", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date());
+        document.getElementById("meknesClock").textContent = "MEKNES · " + t;
+      } catch {
+        document.getElementById("meknesClock").textContent = "GMT+1";
+      }
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
+
+    // Copy email button
+    document.getElementById("copyEmailBtn").addEventListener("click", async () => {
+      const btn = document.getElementById("copyEmailBtn");
+      try { await navigator.clipboard.writeText("sehlisimo50@gmail.com"); } catch {}
+      const prev = btn.textContent;
+      btn.textContent = lang === "fr" ? "Copié ✓ sehlisimo50@gmail.com" : "Copied ✓ sehlisimo50@gmail.com";
+      setTimeout(() => { btn.textContent = prev; }, 2200);
+    });
+
+    // Project category filter
+    document.querySelectorAll(".fbtn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const f = btn.dataset.filter;
+        document.querySelectorAll(".fbtn").forEach((b) => b.classList.toggle("active", b === btn));
+        document.querySelectorAll(".pcard").forEach((card) => {
+          const cats = (card.dataset.cat || "").split(" ");
+          card.classList.toggle("hidden", f !== "all" && !cats.includes(f));
+        });
+      });
+    });
+
+    // Bilingual EN / FR
     const I18N = {
       en: {
-        nav_projects: "Projects", nav_services: "Services", nav_demo: "Live Demo", nav_contact: "Contact",
-        intro_lead: "Software developer and CS Education student in Meknes, Morocco. I build web applications, workflow automations for small businesses, and Rust systems — from bare-metal kernels to production SaaS.",
-        intro_meta: "Meknes, Morocco (GMT+1) · Arabic, French & English · Remote Worldwide",
-        cta_demo: "Try the live $500 automation demo →",
-        sec_projects: "Selected Projects",
-        k_merchyon: "Production SaaS",
-        d_merchyon: "End-to-end Etsy & Amazon Merch on Demand automation platform: batch artwork generation, background removal, lifestyle mockup rendering queues, 13-tag SEO generation, and 24/7 Cloudflare Workers edge failover.",
-        k_demo: "Live Demo", a_demo: "Open demo →",
-        d_demo: "Interactive client-intake workflow for small businesses (accounting, clinics, local services): lead qualification, Cloudflare KV CRM persistence, instant confirmation email generation, Day-3 follow-up task, and CSV/webhook export.",
-        k_siraj: "Systems / OS Kernel",
-        d_siraj: "Minimal educational bare-metal x86_64 operating system kernel written from scratch in Rust to explore bootloading, VGA output, interrupts, and memory management under QEMU.",
-        k_poffice: "Desktop Suite",
-        d_poffice: "Rust workspace monorepo for a native desktop office suite starting with a Presentation module — pairing an egui/eframe desktop client with an Axum API backend and shared data crates.",
-        k_rustlingo: "EdTech Desktop App",
-        d_rustlingo: "Bilingual (English & Arabic) gamified desktop application for learning Rust and Modern Java 17 through interactive exercises, compiler feedback, and visual metaphors.",
-        k_etsyspy: "E-Commerce Analytics",
-        d_etsyspy: "Desktop competitor-research tool for Etsy sellers that parses storefront sold listings to surface pricing trends, high-performing products, and keyword gaps.",
-        k_ext: "Chrome Extension",
-        d_ext: "Manifest V3 browser extension for Etsy and Amazon that extracts product artwork, metadata, and titles directly into the Merchyon generation pipeline with one click.",
-        k_tools: "AI / Automation", a_post: "Read note ↗",
-        d_tools: "Compiled Microsoft Research's native 1.58-bit ternary LLM engine (bitnet.cpp) on CPU-only Linux hardware, plus built a zero-dependency Python LinkedIn Posts API CLI & MCP server with Little Text Format escaping and unit tests.",
-        sec_services: "Working Together",
-        s1_title: "Website + Automation Pack", s1_price: "$500 flat (~460 €) · 7-day delivery",
-        s1_desc: "For small service businesses (accounting, clinics, studios, local services) losing leads to slow websites and manual inbox admin.",
-        s1_l1: "Clean, fast website or landing page refresh",
-        s1_l2: "1 automated intake → CRM/Sheet → email → Day-3 follow-up workflow",
-        s1_l3: "50% upfront ($250), 50% on live delivery ($250)",
-        s1_cta: "Test the live workflow demo →",
-        s2_title: "Part-Time Agency Overflow", s2_price: "$25–$35/hr · or $350–$500/mo retainer",
-        s2_desc: "10–15 hrs/week remote developer support for French, UK, Canadian, and US web & e-commerce agencies.",
-        s2_l1: "Next.js, React, PostgreSQL & Node.js features",
-        s2_l2: "Python data scripts, API webhooks & BullMQ workers",
-        s2_l3: "Same workday overlap with Europe (GMT+1) & fluent FR/EN",
-        s2_cta: "Send a trial task →",
-        sec_about: "Background & Contact",
-        bg_edu_k: "Education", bg_edu_v: "CS Education — École Normale Supérieure (ENS Meknes), Université Moulay Ismail · President, Enactus ENS Meknes",
-        bg_stack_k: "Primary Stack", bg_lang_k: "Languages", bg_lang_v: "Arabic (native), French (fluent), English (fluent)", bg_email_k: "Direct Email"
+        nav_work: "Work", nav_projects: "Projects", nav_stack: "Engineering", nav_services: "Services", nav_demo: "Live Demo", nav_cta: "Open Demo →",
+        hero_kicker: "FULL-STACK · AUTOMATION · RUST SYSTEMS",
+        hero_title: "Engineering web apps, automations & systems that actually ship.",
+        hero_sub: "I'm Mohamed Sehli, a CS Education student at ENS Meknes building production SaaS (Merchyon), bare-metal & desktop Rust software (SirajOS, P-Office), and custom $500 website + workflow automation systems for small businesses worldwide.",
+        cta_demo: "Launch Live $500 Demo →", cta_copy: "Copy sehlisimo50@gmail.com",
+        st_1: "Shipped Systems & Apps", st_2: "Europe Overlap · EN / FR / AR", st_3: "Fixed-Scope Pack Delivery",
+        card_role: "CS Student @ ENS Meknes", card_avail: "Open to Remote Work",
+        v1_k: "Location", v2_k: "Core Stack", v3_k: "Leadership", v4_k: "Flagship SaaS",
+        sec1_idx: "01 / Flagship Production SaaS", feat_tag: "Live Commercial Product · 2026",
+        feat_desc: "End-to-end automation platform built for Etsy and Amazon Merch on Demand sellers. Orchestrates batch artwork generation, automated background removal, lifestyle mockup rendering queues, and programmatic 13-tag SEO publishing in a single pipeline.",
+        feat_b1: "Asynchronous Redis + BullMQ worker queues handling heavy image & mockup pipelines",
+        feat_b2: "PostgreSQL persistence, Clerk authentication, and Paddle subscription billing",
+        feat_b3: "Custom Cloudflare Worker edge failover keeping merchyon.com online 24/7 at $0 server cost",
+        feat_btn2: "Explore Tools ↗",
+        sec2_idx: "02 / Selected Engineering Projects (7)",
+        p_demo: "Interactive proof of my $500 small-business pack: test Accounting, Clinic, or Local Service presets with real Cloudflare KV persistence, lead scoring, instant client email drafting, Day-3 follow-ups, and CSV export.",
+        p_demo_cta: "Launch Demo →",
+        p_siraj: "Minimal educational bare-metal x86_64 operating system kernel written from scratch in Rust to explore bootloading, VGA text buffer drivers, hardware interrupts, and low-level memory layout under QEMU.",
+        p_poffice: "Rust monorepo for a native desktop office suite starting with the Presentation module — combining an eframe/egui GUI frontend, an Axum backend API, and shared typed data crates.",
+        p_rustlingo: "Bilingual (English & Arabic) gamified desktop application for learning Rust and Modern Java 17 from zero through interactive exercises, visual metaphors, and real compiler feedback.",
+        p_etsyspy: "Desktop competitor-intelligence app for Etsy sellers that extracts real sold-page storefront data to uncover pricing bands, winning product niches, and SEO tag opportunities.",
+        p_ext: "Manifest V3 browser extension injecting one-click extraction controls onto Etsy and Amazon product pages to send titles and reference assets straight into Merchyon's automated queue.",
+        p_tools: "Compiled Microsoft Research's native 1.58-bit ternary LLM engine (bitnet.cpp) from source on an 8 GB RAM 11th Gen Intel Core i5 Linux laptop running strictly on CPU kernels — alongside a zero-dependency Python OAuth 2.0 LinkedIn Posts API CLI & MCP server featuring Little Text Format escaping and Rest.li live updates.",
+        p_tools_cta: "Read BitNet Breakdown ↗",
+        sec3_idx: "03 / Engineering Capabilities",
+        c1_t: "Full-Stack Web Apps", c1_d: "Fast, SEO-ready Next.js/React frontends backed by PostgreSQL schemas, auth, billing, and resilient edge hosting.",
+        c2_t: "Workflows & Queues", c2_d: "Eliminating manual inbox/spreadsheet work via webhooks, Redis/BullMQ queues, Python data pipelines, and CRM/email automation.",
+        c3_t: "Rust & Desktop Tools", c3_d: "Native cross-platform apps (Tauri, egui/eframe), Axum APIs, Chrome MV3 extensions, Linux systemd ops, and OS-level Rust/C.",
+        sec4_idx: "04 / Work With Me",
+        o1_tag: "FIXED-SCOPE · SMALL BUSINESSES", o1_title: "Website + Automation Pack", o1_sub: "flat (~460 €) · 7-day delivery",
+        o1_desc: "For clinics, accounting firms, studios, and local service teams tired of losing leads to slow websites and manual inbox follow-ups.",
+        o1_l1: "Clean, fast modern website or landing page refresh",
+        o1_l2: "1 end-to-end automated workflow (intake → CRM/Sheet → instant email → Day-3 reminder)",
+        o1_l3: "Zero monthly server bill option (Cloudflare / Vercel free tier)",
+        o1_l4: "Simple split: 50% upfront ($250) · 50% on live handoff ($250)",
+        o1_b1: "Test Live Demo →", o1_b2: "Book This Pack",
+        o2_tag: "PART-TIME · DIGITAL AGENCIES", o2_title: "Engineering Overflow Retainer", o2_sub: "/ hour · or $350–$500/mo retainer",
+        o2_desc: "10–15 hrs/week reliable engineering capacity for French, UK, Canadian, and US agencies needing extra shipping speed without a full-time hire.",
+        o2_l1: "Next.js / React frontend & PostgreSQL / Node.js backend delivery",
+        o2_l2: "Python data cleaning, catalog migration scripts & API webhooks",
+        o2_l3: "Background job queues (Redis/BullMQ) & Cloudflare edge workers",
+        o2_l4: "Direct GMT+1 overlap with Europe & morning North America",
+        o2_b1: "Send a Trial Task",
+        ct_title: "Need a fast build or workflow automated?",
+        ct_sub: "Send your website URL and the manual bottleneck slowing your team down. I reply within 24 hours."
       },
       fr: {
-        nav_projects: "Projets", nav_services: "Services", nav_demo: "Démo", nav_contact: "Contact",
-        intro_lead: "Développeur logiciel et étudiant en informatique à l'ENS Meknès (Maroc). Je construis des applications web, des workflows d'automatisation pour PME et des systèmes en Rust — du noyau OS jusqu'au SaaS en production.",
-        intro_meta: "Meknès, Maroc (GMT+1 · Heures FR) · Arabe, Français & Anglais · Télétravail",
-        cta_demo: "Tester la démo automatisation (500 $ / 460 €) →",
-        sec_projects: "Projets Sélectionnés",
-        k_merchyon: "SaaS en Production",
-        d_merchyon: "Plateforme complète d'automatisation Print-on-Demand pour Etsy et Amazon Merch : génération de designs par lots, détourage, files de mockups Redis/BullMQ, SEO 13 tags et bascule Cloudflare Workers 24/7.",
-        k_demo: "Démo Live", a_demo: "Ouvrir la démo →",
-        d_demo: "Workflow interactif de prise de contact pour PME (cabinets, cliniques, services) : qualification automatique, CRM persistant Cloudflare KV, e-mail de confirmation sur mesure, relance J+3 et export CSV/webhook.",
-        k_siraj: "Systèmes / Noyau OS",
-        d_siraj: "Noyau de système d'exploitation minimal x86_64 écrit from scratch en Rust à vocation pédagogique (bootloader, affichage VGA, interruptions et gestion mémoire sous QEMU).",
-        k_poffice: "Suite Bureautique",
-        d_poffice: "Monorepo Rust pour une suite bureautique native (module Présentation) combinant une interface desktop egui/eframe, une API Axum et des crates partagés.",
-        k_rustlingo: "App Desktop EdTech",
-        d_rustlingo: "Application desktop bilingue (anglais et arabe) gamifiée pour apprendre Rust et Java 17 avec exercices interactifs et exécution compilateur.",
-        k_etsyspy: "Analyse E-Commerce",
-        d_etsyspy: "Outil desktop de veille concurrentielle Etsy analysant les pages de ventes pour identifier tendances de prix, produits porteurs et opportunités SEO.",
-        k_ext: "Extension Chrome",
-        d_ext: "Extension Manifest V3 pour Etsy et Amazon extrayant visuels et métadonnées produit en un clic vers le pipeline Merchyon.",
-        k_tools: "IA / Automatisation", a_post: "Lire l'article ↗",
-        d_tools: "Compilation de bitnet.cpp (LLM ternaire 1,58 bit Microsoft Research) en CPU pur sous Linux, et création d'un CLI + serveur MCP Python sans dépendances pour l'API LinkedIn Posts.",
-        sec_services: "Travailler Ensemble",
-        s1_title: "Pack Site Web + Automatisation", s1_price: "500 $ (~460 €) forfait fixe · livré en 7 jours",
-        s1_desc: "Pour les cabinets, cliniques, studios et PME qui perdent des prospects à cause d'un site lent ou d'une gestion manuelle par e-mail.",
-        s1_l1: "Site vitrine ou landing page rapide et moderne",
-        s1_l2: "1 workflow complet : formulaire → CRM/Sheet → e-mail → relance J+3",
-        s1_l3: "50 % au démarrage (250 $), 50 % à la livraison (250 $)",
-        s1_cta: "Tester la démo en direct →",
-        s2_title: "Renfort Agence Temps Partiel", s2_price: "25–35 $/h · ou forfait 350–500 $/mois",
-        s2_desc: "10 à 15 h/semaine en renfort technique pour agences web & e-commerce en France, Belgique, Suisse, Royaume-Uni et Canada.",
-        s2_l1: "Développement Next.js, React, PostgreSQL & Node.js",
-        s2_l2: "Scripts Python, webhooks API & files Redis/BullMQ",
-        s2_l3: "Même fuseau horaire que la France (GMT+1) · Français & Anglais",
-        s2_cta: "Proposer une tâche test →",
-        sec_about: "Parcours & Contact",
-        bg_edu_k: "Formation", bg_edu_v: "Informatique (Éducation) — École Normale Supérieure (ENS Meknès), Université Moulay Ismail · Président Enactus ENS Meknès",
-        bg_stack_k: "Stack Principale", bg_lang_k: "Langues", bg_lang_v: "Arabe (natif), Français (courant), Anglais (courant)", bg_email_k: "E-mail Direct"
+        nav_work: "Produit", nav_projects: "Projets", nav_stack: "Ingénierie", nav_services: "Offres", nav_demo: "Démo", nav_cta: "Ouvrir la Démo →",
+        hero_kicker: "FULL-STACK · AUTOMATISATION · SYSTÈMES RUST",
+        hero_title: "Je conçois des apps web, automatisations et systèmes prêts pour la production.",
+        hero_sub: "Je suis Mohamed Sehli, étudiant en informatique à l'ENS Meknès (Maroc). Je développe le SaaS Merchyon, des systèmes Rust (SirajOS, P-Office) et des packs Site Web + Automatisation à 500 $ (~460 €) pour PME et agences.",
+        cta_demo: "Tester la Démo Pack 500 $ →", cta_copy: "Copier sehlisimo50@gmail.com",
+        st_1: "Systèmes & Apps Livrés", st_2: "Fuseau France · FR / EN / AR", st_3: "Livraison Pack Clé en Main",
+        card_role: "Étudiant Info @ ENS Meknès", card_avail: "Disponible en Télétravail",
+        v1_k: "Localisation", v2_k: "Stack Clé", v3_k: "Leadership", v4_k: "SaaS Phare",
+        sec1_idx: "01 / Produit SaaS en Production", feat_tag: "Produit Commercial Live · 2026",
+        feat_desc: "Plateforme d'automatisation complète pour vendeurs Etsy et Amazon Merch on Demand : génération de designs par lots, détourage automatique, files de mockups et SEO programmatique 13 tags.",
+        feat_b1: "Files asynchrones Redis + BullMQ gérant les pipelines lourds d'images et mockups",
+        feat_b2: "Base PostgreSQL, authentification Clerk et facturation Paddle",
+        feat_b3: "Bascule edge Cloudflare Workers maintenant merchyon.com en ligne 24/7 à 0 €/mois",
+        feat_btn2: "Explorer les outils ↗",
+        sec2_idx: "02 / Projets d'Ingénierie Sélectionnés (7)",
+        p_demo: "Démonstration réelle de mon pack PME à 500 $ (~460 €) : testez les modes Cabinet, Clinique ou Services avec sauvegarde Cloudflare KV, scoring prospect, e-mail instantané, relance J+3 et export CSV.",
+        p_demo_cta: "Lancer la Démo →",
+        p_siraj: "Noyau de système d'exploitation x86_64 minimal écrit from scratch en Rust (bootloader, driver VGA 80×25, interruptions matérielles et mémoire sous QEMU).",
+        p_poffice: "Monorepo Rust pour une suite bureautique native (module Présentation) combinant une interface desktop eframe/egui, une API Axum et des crates partagés.",
+        p_rustlingo: "Application desktop bilingue (anglais et arabe) gamifiée pour apprendre Rust et Java 17 avec exercices interactifs et retours réels du compilateur.",
+        p_etsyspy: "Outil desktop d'analyse concurrentielle Etsy extrayant les pages de ventes réelles pour identifier fourchettes de prix, produits porteurs et opportunités SEO.",
+        p_ext: "Extension Chrome Manifest V3 injectant un bouton d'extraction en un clic sur Etsy et Amazon vers la file de production Merchyon.",
+        p_tools: "Compilation source de bitnet.cpp (LLM ternaire 1,58 bit Microsoft Research) en CPU pur sous Linux sur Core i5 8 Go RAM, plus CLI & serveur MCP Python sans dépendances pour l'API LinkedIn Posts.",
+        p_tools_cta: "Lire l'analyse BitNet ↗",
+        sec3_idx: "03 / Domaines d'Ingénierie",
+        c1_t: "Applications Web Full-Stack", c1_d: "Frontends Next.js/React rapides et SEO-ready couplés à PostgreSQL, authentification, paiements et hébergement edge.",
+        c2_t: "Workflows & Files d'Attente", c2_d: "Suppression des tâches manuelles répétitives via webhooks, Redis/BullMQ, scripts Python et automatisations CRM/e-mails.",
+        c3_t: "Rust & Outils Desktop", c3_d: "Applications natives Tauri & egui/eframe, APIs Axum, extensions Chrome MV3, administration Linux systemd et bas niveau Rust/C.",
+        sec4_idx: "04 / Travailler Ensemble",
+        o1_tag: "FORFAIT FIXE · PME & CABINETS", o1_title: "Pack Site Web + Automatisation", o1_sub: "fixe (~460 €) · livré en 7 jours",
+        o1_desc: "Pour les cabinets comptables, cliniques, studios et PME qui perdent des prospects à cause d'un site lent ou d'une gestion manuelle.",
+        o1_l1: "Site vitrine ou landing page rapide, moderne et mobile-first",
+        o1_l2: "1 workflow complet : formulaire → CRM/Sheet → e-mail instantané → relance J+3",
+        o1_l3: "Hébergement 0 €/mois possible (Cloudflare / Vercel)",
+        o1_l4: "Modalités simples : 50 % au démarrage (250 $) · 50 % à la livraison (250 $)",
+        o1_b1: "Tester la Démo →", o1_b2: "Réserver ce Pack",
+        o2_tag: "TEMPS PARTIEL · AGENCES DIGITALES", o2_title: "Renfort Technique Agence", o2_sub: "/ heure · ou forfait 350–500 $/mois",
+        o2_desc: "10 à 15 h/semaine de renfort fiable pour agences web & e-commerce en France, Belgique, Suisse, Royaume-Uni et Canada.",
+        o2_l1: "Développement Next.js / React et backend PostgreSQL / Node.js",
+        o2_l2: "Scripts Python, nettoyage catalogues et webhooks API",
+        o2_l3: "Files Redis/BullMQ et Cloudflare Workers",
+        o2_l4: "Même fuseau horaire que la France (GMT+1) · Français & Anglais",
+        o2_b1: "Proposer une tâche test",
+        ct_title: "Besoin d'un site rapide ou d'automatiser un workflow ?",
+        ct_sub: "Envoyez l'adresse de votre site et la tâche manuelle qui vous ralentit. Réponse concrète sous 24 h."
       }
     };
 

@@ -28,12 +28,14 @@ async function runTests() {
   assert.match(homeHtml, /Etsy Spy Pro/);
   assert.match(homeHtml, /\/avatar\.jpg/);
 
-  // 1b. Avatar image serves JPEG bytes
-  const rImg = await worker.fetch(new Request("https://example.workers.dev/avatar.jpg"), env);
-  assert.equal(rImg.status, 200);
-  assert.equal(rImg.headers.get("Content-Type"), "image/jpeg");
-  const imgBuf = await rImg.arrayBuffer();
-  assert.ok(imgBuf.byteLength > 5000);
+  // 1b. Avatar & Merchyon images serve JPEG bytes
+  for (const imgPath of ["/avatar.jpg", "/merchyon.jpg"]) {
+    const rImg = await worker.fetch(new Request(`https://example.workers.dev${imgPath}`), env);
+    assert.equal(rImg.status, 200);
+    assert.equal(rImg.headers.get("Content-Type"), "image/jpeg");
+    const imgBuf = await rImg.arrayBuffer();
+    assert.ok(imgBuf.byteLength > 5000);
+  }
 
   // 2. Demo HTML renders cleanly
   const rDemo = await worker.fetch(new Request("https://example.workers.dev/demo"), env);
