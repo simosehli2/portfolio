@@ -16,12 +16,24 @@ class MemoryKV {
 async function runTests() {
   const env = { LEADS_KV: new MemoryKV() };
 
-  // 1. Portfolio HTML renders cleanly
+  // 1. Portfolio HTML renders cleanly with real projects & portrait
   const rHome = await worker.fetch(new Request("https://example.workers.dev/"), env);
   assert.equal(rHome.status, 200);
   const homeHtml = await rHome.text();
   assert.match(homeHtml, /Mohamed Sehli/);
   assert.match(homeHtml, /merchyon\.com/);
+  assert.match(homeHtml, /SirajOS/);
+  assert.match(homeHtml, /P-Office/);
+  assert.match(homeHtml, /Rustlingo/);
+  assert.match(homeHtml, /Etsy Spy Pro/);
+  assert.match(homeHtml, /\/avatar\.jpg/);
+
+  // 1b. Avatar image serves JPEG bytes
+  const rImg = await worker.fetch(new Request("https://example.workers.dev/avatar.jpg"), env);
+  assert.equal(rImg.status, 200);
+  assert.equal(rImg.headers.get("Content-Type"), "image/jpeg");
+  const imgBuf = await rImg.arrayBuffer();
+  assert.ok(imgBuf.byteLength > 5000);
 
   // 2. Demo HTML renders cleanly
   const rDemo = await worker.fetch(new Request("https://example.workers.dev/demo"), env);
